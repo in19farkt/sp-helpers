@@ -5,19 +5,45 @@
 
   &__item {
     display: flex;
-    margin-top: 10px;
+    padding: 5px;
+    transition: background-color 0.4s;
+    align-items: center;
+
+    &:nth-child(odd) {
+      background-color: #fafafa;
+    }
+
+    &:hover {
+      background-color: #eee;
+    }
+
+    &_focus {
+      background-color: #cbeaff;
+
+      &:hover {
+        background-color: #cbeaff;
+      }
+    }
   }
 
   &__input {
-    width: 250px;
+    width: 400px;
   }
 
-  &__link {
+  &__number {
+    display: inline-block;
+    width: 35px;
+    text-align: center;
+  }
+
+  &__link,
+  &__number {
     font-size: 1.5rem;
   }
 
   &__btn,
   &__input,
+  &__number,
   &__link {
     margin-right: 15px;
   }

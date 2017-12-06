@@ -37,9 +37,16 @@ function mapDispatch(dispatch: Dispatch<any>): IActionProps {
 
 const b = block('searcher');
 
-class Searcher extends React.PureComponent<Props, {}> {
+interface IState {
+  itemInFocus: number;
+}
+
+class Searcher extends React.PureComponent<Props, IState> {
+  public state: IState = { itemInFocus: -1 };
+
   public render() {
     const { editQueries } = this.props;
+    const { itemInFocus } = this.state;
 
     return (
       <div className={b()}>
@@ -50,9 +57,19 @@ class Searcher extends React.PureComponent<Props, {}> {
         />
         <div className={b('list')()}>
           {editQueries.value.map((query, index) => (
-            <div className={b('item')()}>
+            <div
+              key={index}
+              onClick={this.onItemClick.bind(null, index)}
+              className={b('item', { focus: index === itemInFocus })()}
+            >
+              <span className={b('number')()}>{index + 1}</span>
               <div className={b('input')()}>
-                <Input id={this.getInputID(index)} value={query} onChange={this.onChangeItem.bind(null, index)} />
+                <Input.TextArea
+                  autosize
+                  value={query}
+                  id={this.getInputID(index)}
+                  onChange={this.onChangeItem.bind(null, index)}
+                />
               </div>
               <div className={b('btn')()}>
                 <Button icon="copy" onClick={this.onCopyClick.bind(null, index)}>Copy</Button>
@@ -73,6 +90,11 @@ class Searcher extends React.PureComponent<Props, {}> {
       <a key="1" target="_blank" className={b('link')()} href={hrefOzon}>OZON</a>,
       <a key="2" target="_blank" className={b('link')()} href={hrefYandex}>Yandex</a>,
     ];
+  }
+
+  @bind
+  private onItemClick(index: number) {
+    this.setState({ itemInFocus: index });
   }
 
   @bind
