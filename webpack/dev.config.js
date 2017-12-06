@@ -39,7 +39,7 @@ module.exports = {
     },
     output: {
         publicPath: '/',
-        path: path.resolve(__dirname, '..', 'build'),
+        path: path.resolve(__dirname, '..', 'public'),
         filename: 'js/[name]-[hash].bundle.js',
         chunkFilename: 'js/[name]-[hash].bundle.js',
     },
@@ -135,7 +135,7 @@ module.exports = {
     ],
 
     devServer: {
-        contentBase: path.resolve('..', 'build'),
+        contentBase: path.resolve('..', 'public'),
         host: '0.0.0.0',
         port: 8080,
         inline: true,

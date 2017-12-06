@@ -55,7 +55,7 @@ class Searcher extends React.PureComponent<Props, {}> {
                 <Input id={this.getInputID(index)} value={query} onChange={this.onChangeItem.bind(null, index)} />
               </div>
               <div className={b('btn')()}>
-                <Button onClick={this.onCopyClick.bind(null, index)}>Copy</Button>
+                <Button icon="copy" onClick={this.onCopyClick.bind(null, index)}>Copy</Button>
               </div>
               {this.renderLinks(query)}
             </div>
