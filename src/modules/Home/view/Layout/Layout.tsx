@@ -4,17 +4,12 @@ import { featureConnect } from 'core';
 
 import { RouteComponentProps } from 'react-router-dom';
 
-import * as searchRepositories from 'features/searchRepositories';
+import * as searchImage from 'features/searchImage';
 
-import { Navbar } from 'react-bootstrap';
-import RowsLayout from 'shared/view/elements/RowsLayout';
-import Header from 'shared/view/components/Header/index';
-import Description from './Description';
-import Search from './Search';
 import './Layout.scss';
 
 interface IOwnProps {
-  searchRepositoriesEntry: searchRepositories.Entry;
+  searchImageEntry: searchImage.Entry;
 }
 
 type Props = IOwnProps & RouteComponentProps<void>;
@@ -24,34 +19,19 @@ class HomeLayout extends React.PureComponent<Props, {}> {
 
   public render() {
     const b = this.b;
-    const { history } = this.props;
-    const { SearchRepositoriesInput } = this.props.searchRepositoriesEntry.containers;
 
     return (
-      <RowsLayout
-        footerContent={<a href="http://fullstack-development.com/">FullStackDevelopment</a>}
-        headerContent={(
-          <Header onLinkClick={history.push}>
-            <Navbar.Form pullRight>
-              <SearchRepositoriesInput />
-            </Navbar.Form>
-          </Header>
-        )}
-      >
-        <div className={b()}>
-          <div className={b('content')()}>
-            <Description />
-            12234556
-            <Search SearchRepositoriesInput={SearchRepositoriesInput} />
-          </div>
+      <div className={b()}>
+        <div className={b('content')()}>
+          asd
         </div>
-      </RowsLayout>
+      </div>
     );
   }
 }
 
 const withFeatures = featureConnect({
-  searchRepositoriesEntry: searchRepositories.loadEntry,
+  searchImageEntry: searchImage.loadEntry,
 })(HomeLayout);
 
 export default withFeatures;

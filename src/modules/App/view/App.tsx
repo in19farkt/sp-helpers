@@ -1,7 +1,5 @@
 import * as React from 'react';
 import * as block from 'bem-cn';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'assets/bootstrap.paper.min.css';
 import 'shared/view/styles/base.scss';
 import './styles.scss';
 import './fonts';

@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import 'babel-polyfill';
+// import 'antd/dist/antd.css'
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import configureApp from 'core/configureApp';

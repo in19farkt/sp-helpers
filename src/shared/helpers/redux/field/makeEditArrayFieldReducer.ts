@@ -2,40 +2,42 @@ import { Reducer } from 'redux';
 
 import { IAction, IReduxField, Validator } from '../namespace';
 
-type ActionType<AT, RT, UT, UPI>
-  = IAddAction<AT> | IRemoveAction<RT> | IUpdateAction<UT, UPI>;
+export type IAddAction<AT, IT> = IAction<AT, IT>;
 
-type IAddAction<T> = IAction<T, any>;
-
-type IRemoveAction<T> = IAction<T, number>;
+export type IRemoveAction<AT> = IAction<AT, number>;
 
 interface IUpdatePayload<T> {
   index: number;
   item: T;
 }
 
-type IUpdateAction<T, PI> = IAction<T, IUpdatePayload<PI>>;
+export type IUpdateAction<AT, IT> = IAction<AT, IUpdatePayload<IT>>;
 
-export default function makeArrayFieldReducer<AT, UT, RT, T>(
-  addType: AT,
-  removeType: RT,
-  updateType: UT,
+export default function makeArrayFieldReducer<
+  A extends IAddAction<string, T>,
+  U extends IUpdateAction<string, T>,
+  R extends IRemoveAction<string>,
+  T = A['payload']
+  >(
+  addType: A['type'],
+  updateType: U['type'],
+  removeType: R['type'],
   initial: IReduxField<T[]>,
   validator?: Validator<T[]>,
 ): Reducer<IReduxField<T[]>> {
   return function arrayFieldReducer(
-    state: IReduxField<T[]> = initial, action: ActionType<AT, RT, UT, T>,
+    state: IReduxField<T[]> = initial, action: A | U | R,
   ): IReduxField<T[]> {
     switch (action.type) {
       case addType: {
 
-        const nextValue = [...state.value, action.payload];
+        const nextValue = [...state.value, (action as A).payload];
         const error = validator ? validator(nextValue, state.value) : '';
 
         return { ...state, error, value: nextValue };
       }
       case removeType: {
-        const payload = action.payload as IRemoveAction<RT>['payload'];
+        const payload = (action as R).payload;
         const nextValue = [
           ...state.value.slice(0, payload),
           ...state.value.slice(payload + 1),
@@ -45,7 +47,7 @@ export default function makeArrayFieldReducer<AT, UT, RT, T>(
         return { ...state, error, value: nextValue };
       }
       case updateType: {
-        const { index, item } = action.payload as IUpdatePayload<T>;
+        const { index, item } = (action as U).payload;
         const nextValue = [...state.value.slice(0, index), item, ...state.value.slice(index + 1)];
         const error = validator ? validator(nextValue, state.value) : '';
 

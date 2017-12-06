@@ -31,12 +31,9 @@ module.exports = {
             'react-redux',
             'react-router',
             'react-select',
-            'react-bootstrap',
             'reflect-metadata',
             'inversify-inject-decorators',
             // 'react-tap-event-plugin',
-            'bootstrap/dist/css/bootstrap.min.css',
-            './assets/bootstrap.paper.min.css',
         ]
     },
     output: {
