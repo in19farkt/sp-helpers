@@ -1,1 +1,1 @@
-export { default as CategorySelect } from './CategorySelect/CategorySelect';
+export { default as Searcher } from './Searcher/Searcher';

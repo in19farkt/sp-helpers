@@ -14,17 +14,16 @@ interface IOwnProps {
 
 type Props = IOwnProps & RouteComponentProps<void>;
 
+const b = block('index-page');
+
 class HomeLayout extends React.PureComponent<Props, {}> {
-  private b = block('index-page');
 
   public render() {
-    const b = this.b;
+    const { Searcher } = this.props.searchImageEntry.containers;
 
     return (
       <div className={b()}>
-        <div className={b('content')()}>
-          asd
-        </div>
+        <Searcher />
       </div>
     );
   }

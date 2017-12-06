@@ -8,7 +8,7 @@ export function addQuery(value: string): NS.IAddQuery {
   return { type: 'SEARCH_IMAGE:ADD_QUERY', payload: value };
 }
 
-export function updateQuery(item: string, index: number): NS.IUpdateQuery {
+export function updateQuery(index: number, item: string): NS.IUpdateQuery {
   return { type: 'SEARCH_IMAGE:UPDATE_QUERY', payload: { index, item } };
 }
 

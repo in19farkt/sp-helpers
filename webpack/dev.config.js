@@ -18,6 +18,7 @@ module.exports = {
           './index.tsx'
         ],
         vendor: [
+            'antd',
             'uuid',
             'axios',
             'react',
