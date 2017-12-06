@@ -67,9 +67,11 @@ class Searcher extends React.PureComponent<Props, {}> {
 
   private renderLinks(query: string) {
     const hrefOzon: string = encodeURI(`http://www.ozon.ru/?context=search&text=${query}`);
+    const hrefYandex: string = encodeURI(`https://yandex.ru/search/?text=${query}`);
 
     return [
       <a key="1" target="_blank" className={b('link')()} href={hrefOzon}>OZON</a>,
+      <a key="2" target="_blank" className={b('link')()} href={hrefYandex}>Yandex</a>,
     ];
   }
 

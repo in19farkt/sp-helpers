@@ -5,7 +5,7 @@ const initialState: IReduxState = {
     queries: [],
   },
   edit: {
-    queries: { value: ['dfgsdfg', 'sadfasdfs', 'sdfasdf'], error: '' },
+    queries: { value: ['котики', 'мимими', 'уруруру'], error: '' },
   },
 };
 
