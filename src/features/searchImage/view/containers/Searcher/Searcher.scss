@@ -20,6 +20,7 @@
     &_focus {
       background-color: #cbeaff;
 
+      &:nth-child(odd),
       &:hover {
         background-color: #cbeaff;
       }
