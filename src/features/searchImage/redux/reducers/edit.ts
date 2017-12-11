@@ -12,7 +12,7 @@ export function editReducer(state: NS.IReduxState['edit'] = initial.edit, action
         ...state,
         queries: {
           error: '',
-          value: action.payload.split(/[\n\t]/).filter(item => item),
+          value: action.payload.split(/[\n\t]/).filter(item => item).map(item => item.replace(/вн\.брак/, '').trim()),
         },
       };
     }
